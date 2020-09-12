@@ -4,6 +4,11 @@
 @section('content')
     <div class="container">
         <h1 class="text-center">Product Page</h1>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+        @endif
         <div class="row">
             <div class="card-deck">
                 @if(count($products) > 0)
