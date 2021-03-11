@@ -32,7 +32,30 @@
                                 <span>{{$product['name']}}</span>
                             </td>
                             <td>₹{{$product['price']}}</td>
-                            <td>{{$product['quantity']}}</td>
+                            <td>
+                                <form action="{{route('change_qty', $id)}}" class="d-flex">
+                                    <button
+                                        type="submit"
+                                        value="down"
+                                        name="change_to"
+                                        class="btn btn-danger"
+                                    >
+                                        @if($product['quantity'] === 1) x @else - @endif
+                                    </button>
+                                    <input
+                                        type="number"
+                                        value="{{$product['quantity']}}"
+                                        disabled>
+                                    <button
+                                        type="submit"
+                                        value="up"
+                                        name="change_to"
+                                        class="btn btn-success"
+                                    >
+                                        +
+                                    </button>
+                                </form>
+                            </td>
                             <td>₹{{$sub_total}}</td>
                             <td>
                                 <a href="{{route('remove', [$id])}}" class="btn btn-danger btn-sm">X</a>
@@ -51,13 +74,15 @@
                             @csrf
                             <input type="hidden" name="amount" value="{{$total}}">
                             <button type="submit"
-                               class="btn btn-success"
-                            >Proceed to Pay</button>
+                                    class="btn btn-success"
+                            >Proceed to Pay
+                            </button>
                             <button type="submit"
                                     class="btn btn-warning"
                                     name="gateway"
                                     value="paypal"
-                            >Proceed with Paypal</button>
+                            >Proceed with Paypal
+                            </button>
                         </form>
 
                     </td>
